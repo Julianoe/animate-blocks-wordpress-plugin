@@ -103,6 +103,7 @@ registerBlockType( 'animate-blocks/animate', {
 			once,
 			mirror,
 			anchorPlacement,
+			animatingClass = 'aos-animate',
 		} = attributes;
 
 		return (
@@ -116,7 +117,18 @@ registerBlockType( 'animate-blocks/animate', {
 							label={ __( 'Animation', 'animate-blocks' ) }
 							value={ animation }
 							options={ animationOptions }
-							onChange={ ( selectedOption ) => setAttributes( { animation: selectedOption } ) }
+							onChange={ 
+								( selectedOption ) => {
+									setAttributes( { animation: selectedOption } );
+									
+									// hide and then show again the block to showcase the type of animation selected
+									setAttributes( { animatingClass: ' ' });
+									setTimeout(
+										() => { setAttributes( { animatingClass: 'aos-animate' }) },
+										duration
+									)
+								}
+							}
 						/>
 						<RangeControl
 							label={ __( 'Delay (ms)' ) }
@@ -179,8 +191,18 @@ registerBlockType( 'animate-blocks/animate', {
 							className,
 							classNames(
 								'animate-blocks-editor-block__inner-blocks-wrap',
+								animatingClass
 							)
 						 }
+						data-aos={ animation }
+						{ ...( delay !== aosDefaultOptions.delay && { 'data-aos-delay': delay } ) }
+						{ ...( duration !== aosDefaultOptions.duration && { 'data-aos-duration': duration } ) }
+						{ ...( offset !== aosDefaultOptions.offset && { 'data-aos-offset': offset } ) }
+						{ ...( easing !== aosDefaultOptions.easing && { 'data-aos-easing': easing } ) }
+						{ ...( once !== aosDefaultOptions.once && { 'data-aos-once': once } ) }
+						{ ...( mirror !== aosDefaultOptions.mirror && { 'data-aos-mirror': mirror } ) }
+						{ ...( anchorPlacement !== aosDefaultOptions.anchorPlacement && { 'data-aos-anchor-placement': anchorPlacement } ) }
+					>
 						<InnerBlocks />
 					</div>
 				</div>
