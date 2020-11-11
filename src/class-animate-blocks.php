@@ -107,6 +107,14 @@ class Animate_Blocks {
 			$this->version,
 			true // Enqueue the script in the footer.
 		);
+
+		// Styles.
+		wp_enqueue_style(
+			'animate_block-block-editor-css', // Handle.
+			plugins_url( '/dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
+			array( 'wp-edit-blocks' ),
+			'1.0.1'
+		);
 	}
 
 	/**

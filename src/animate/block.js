@@ -2,10 +2,15 @@
  * BLOCK: animate-blocks/animate
  */
 
+//  Import CSS.
+import './editor.scss';
+
 // Import block dependencies
 import anchorPlacementOptions from './anchor-placement-options';
 import animationOptions from './animation-options';
 import easingOptions from './easing-options';
+
+import classNames from 'classnames'; // à éliminier : https://wordpress.stackexchange.com/questions/304009/gutenberg-extend-blocks-add-new-class-name
 
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
@@ -20,6 +25,7 @@ const {
 	SelectControl,
 	ToggleControl,
 	RangeControl,
+	Dashicon,
 } = wp.components;
 const { applyFilters } = wp.hooks;
 
@@ -163,8 +169,20 @@ registerBlockType( 'animate-blocks/animate', {
 						/>
 					</PanelBody>
 				</InspectorControls>
-				<div className={ className }>
-					<InnerBlocks />
+				<div className="animate-blocks-editor-block">
+					<div className="animate-blocks-editor-block__tab" title="Animation Block">
+						<Dashicon icon="controls-play" />
+						<p className="animate-blocks-editor-block__title">{ __( 'Select Animation Block' ) }</p>
+					</div>
+					<div 
+						className={ 
+							className,
+							classNames(
+								'animate-blocks-editor-block__inner-blocks-wrap',
+							)
+						 }
+						<InnerBlocks />
+					</div>
 				</div>
 			</Fragment>
 		);

@@ -1,0 +1,32 @@
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.animate-blocks-editor-block, .animate-blocks-editor-block__inner-blocks-wrap {
+  position: relative; }
+
+.animate-blocks-editor-block__title {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+
+.animate-blocks-editor-block__tab {
+  color: #ff0080;
+  left: -35px;
+  position: absolute;
+  top: 0; }
+  .animate-blocks-editor-block__tab:hover {
+    color: #ff389c; }
